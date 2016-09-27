@@ -20484,10 +20484,16 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	    _this.state = {
+	      userArray: [],
+	      loggedIn: false
+	    };
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -20498,23 +20504,22 @@
 	        username: (0, _jquery2.default)('#inputEmail').val(),
 	        password: (0, _jquery2.default)('#inputPassword').val()
 	      };
-	      debugger;
-	      _jquery2.default.ajax({
-	        type: 'POST',
-	        url: 'http://localhost:3000',
-	        dataType: 'json',
-	        data: formdata,
-	        headers: {
-	          'Access-Control-Allow-Origin': '*'
-	        },
-	        success: function (res) {
-	          console.log('res', res);
-	        }.bind(this),
-	        error: function (xhr, status, err) {
-	          console.log('xhr', xhr);
-	          console.log('satutus', status);
-	          console.log('err', err);
-	        }.bind(this)
+	      _jquery2.default.post('http://localhost:3000/login', formdata, function (response) {
+	        console.log('response', response);
+	        self.setState({ userArray: response, loggedIn: true });
+	      });
+	    }
+	  }, {
+	    key: 'signUp',
+	    value: function signUp() {
+	      var self = this;
+	      var formdata = {
+	        username: (0, _jquery2.default)('#inputEmail').val(),
+	        password: (0, _jquery2.default)('#inputPassword').val()
+	      };
+	      _jquery2.default.post('http://localhost:3000/signUp', formdata, function (response) {
+	        console.log('response', response);
+	        self.setState({ userArray: response, loggedIn: true });
 	      });
 	    }
 	  }, {
@@ -20522,7 +20527,8 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'col-md-12' },
+	        { className: 'form-signin', id: 'loginForm' },
+	        !this.state.loggedIn ? "Please Enter" : this.state.userArray.length > 0 ? "Welcome " + this.state.userArray[0].username : "Wrong User",
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'inputEmail', className: 'sr-only' },
@@ -20547,8 +20553,13 @@
 	        ),
 	        _react2.default.createElement(
 	          'button',
-	          { className: 'btn btn-primary btn-block', onClick: this.signIn },
+	          { className: 'btn btn-primary btn-block', onClick: this.signIn.bind(this) },
 	          'Sign in'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'btn btn-primary btn-block', onClick: this.signUp.bind(this) },
+	          'Sign Up'
 	        )
 	      );
 	    }

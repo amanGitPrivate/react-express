@@ -38,8 +38,8 @@ class App extends React.Component {
    render() {
         return (
 
-          <div className="col-md-12">
-              {!this.state.loggedIn ? "Please Enter": this.state.userArray.length > 0 ? "Welcome "+this.state.userArray[0].username : "Wrong User"}
+          <div className="form-signin" id="loginForm">
+              {!this.state.loggedIn ? "Please enter your login credentials": this.state.userArray.length > 0 ? "Welcome "+this.state.userArray[0].username : "Wrong User"}
               <label htmlFor="inputEmail" className="sr-only">Email address</label>
               <input type="text" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
               <label htmlFor="inputPassword" className="sr-only">Password</label>

@@ -53,8 +53,6 @@ class App extends React.Component {
    render() {
       return (
          <div>
-            Hello Pleae Enter Your User Name!!!
-            <br/>
             <Login/>
          </div>
       );
