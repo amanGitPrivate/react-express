@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Map,Marker} from 'google-maps-react';
+// import {Map,Marker} from 'google-maps-react';
 
 
 class Archive extends React.Component {
@@ -14,7 +14,7 @@ class Archive extends React.Component {
    }
 
 
-  componentDidMount(){  
+  componentDidMount(){
 
     let latLongData;
 
@@ -28,7 +28,7 @@ class Archive extends React.Component {
               jsonpCallback: 'jsonp',
               success: function(data) {
                 console.log(data);
-                
+
                 this.setState({todos:data});
               }.bind(this),
               error: function(xhr, status, err) {
@@ -38,8 +38,8 @@ class Archive extends React.Component {
                 alert('fail')
               }.bind(this)
 
-            });   
-    }  
+            });
+    }
 
    joinIndiaCities(data){
        // map type can be roadmap,satellite,hybrid,terrain
@@ -55,13 +55,13 @@ class Archive extends React.Component {
         //   zoom: 10,
         //   mapTypeId: google.maps.MapTypeId.HYBRID
         // }
-        // let map = new google.maps.Map(mapCanvas, mapOptions);  
+        // let map = new google.maps.Map(mapCanvas, mapOptions);
 
         // centerArray.map(function(data,index){
         //   let marker = new google.maps.Marker({position:data,
         //   animation:google.maps.Animation.HYBRID
         //   });
-        //   marker.setMap(map)  
+        //   marker.setMap(map)
         // })
         // let centerArray=[];
         // data.map(function(data,index){
@@ -69,8 +69,8 @@ class Archive extends React.Component {
         // console.log('data',parseInt(data.latitude),parseInt(data.longitude));
         //   centerArray.push(
         //       new google.maps.LatLng(parseInt(data.latitude),parseInt(data.longitude)))
-            
-        // console.log('centerArray',centerArray)  
+
+        // console.log('centerArray',centerArray)
 
         // });
         // console.log('centerArray',centerArray);
@@ -103,20 +103,20 @@ class Archive extends React.Component {
         //   zoom: 10,
         //   mapTypeId: google.maps.MapTypeId.HYBRID
         // }
-        // let map = new google.maps.Map(mapCanvas, mapOptions);  
+        // let map = new google.maps.Map(mapCanvas, mapOptions);
 
         // centerArray.map(function(data,index){
         //   let marker = new google.maps.Marker({position:data,
         //   animation:google.maps.Animation.HYBRID
         //   });
-        //   marker.setMap(map)  
+        //   marker.setMap(map)
         // })
 
 
-   } 
+   }
 
    render() {
-      
+
       var self = this;
       return (
           <div>
@@ -127,7 +127,6 @@ class Archive extends React.Component {
 
              })
             }
-            <div id = "map" style={{height:"300px"}}></div>
           </div>
       );
    }

@@ -1,19 +1,38 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
+var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
 var open = require('open');
+var bodyParser = require('body-parser')
+var database = {};
 
-app.use(express.static(path.join(__dirname,'public')));
+MongoClient.connect('mongodb://localhost:27017/react-express-app', function(err, db) {
+  if (err) {
+    throw err;
+  }else{
+		database = db;
+		console.log('Database connection successfully established. Current database is : ',database.s.databaseName);
+	}
+});
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(function(req,res,next){
-	res.header("Access-Control-Allow-Origin","*");
-	res.header("Access-Control-Allow-Origin","Origin");
-	next();
-})
+  // parse application/json
+  app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-  var data = [{"name":"aman"}];
-  res.jsonp(data);
+  app.use(cors());
+  app.use(express.static(path.join(__dirname,'public')));
+  app.post('/',function(req,res){
+    var resultArr = [];
+    database.collection('profile').find({"username":req.body.username, "password":req.body.password}).toArray(function(err, result) {
+      if (err) {
+        throw err;
+      }else{
+    		resultArr = result;
+    		res.send(resultArr);
+    	}
+    });
 });
 
 app.listen(3000, function () {
