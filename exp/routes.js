@@ -6,12 +6,32 @@ module.exports = {
       app.post('/login',function(req,res){
           var resultArr = [];
           var dbFile = db.getDb();
-          dbFile.collection('profile').find({"username":req.body.username, "password":req.body.password}).toArray(function(err, result) {
+          var wrongpassword = "wrongpassword";
+          var wrongusername = "wrongusername"
+          dbFile.collection('profile').find({"username":req.body.username}).toArray(function(err, result) {
             if (err) {
               throw err;
             }else{
-              resultArr = result;
-              res.send(resultArr);
+              if(result.length > 0){
+                  dbFile.collection('profile').find({"password":req.body.password}).toArray(function(err, resultpass) {
+
+                    if(resultpass.length > 0){
+                      if (err) {
+                        throw err;
+                      }else{
+                        resultArr = result;
+                        res.send(resultArr);
+                      }
+                    }
+                    else{
+                      res.send(wrongpassword);
+                    }
+    
+                  });
+              }else{
+                res.send(wrongusername);
+              }
+
             }
           });
        });
@@ -20,7 +40,7 @@ module.exports = {
           console.log('signUp')
            var resultArr = [];
            var dbFile = db.getDb();
-           dbFile.collection('profile').insert({"username":req.body.username, "password":req.body.password},function(err, result) {
+           dbFile.collection('profile').insert(req.body,function(err, result) {
              if (err) {
                throw err;
              }else{

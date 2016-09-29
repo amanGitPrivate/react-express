@@ -1,6 +1,8 @@
 import React from 'react';
 import Name from './ComponentFolder/Name.jsx';
 import Login from './Login.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 import {Link} from 'react-router';
 
@@ -52,8 +54,10 @@ class App extends React.Component {
 
    render() {
       return (
-         <div>
-            <Login/>
+         <div className = "mainWrapper">
+            <MuiThemeProvider>
+               <Login/>
+             </MuiThemeProvider>   
          </div>
       );
    }

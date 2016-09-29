@@ -1,17 +1,56 @@
-@font-face {
+.form-signin {
+    width: 30%;
+    padding: 15px;
+    margin: 0 auto;
+}
+.hidden{
+  visibility: hidden;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+.signUpPage{
+    background-image: url(../img/images.jpg);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0px !important; 
+}
+html{
+  width: 100%;
+  height: 100%; 
+}
+.mainContainer,.mainWrapper,#app{
+  width: 100%;
+  height: 100%;
+}
+.loginSectionWrapper{
+    position: relative;
+    width: 50%;
+    margin-top: 10px;
+    margin: 0 auto;
+    top: 39px;
+    text-align: center;
+}
+input{
+  color:white;
+}
+/*@font-face {
     font-family: Gotham-Medium;
     src: url(../fonts/gotham_rounded/GothamRounded-Medium.otf);
 }
 h1 {
   font-family: 'Gotham-Medium';
   color:#fff;
-}
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.form-signin .form-signin-heading, .form-signin .checkbox {
+}*/
+
+/*.form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
 .form-signin .checkbox {
@@ -30,3 +69,42 @@ h1 {
   width:22px;
   margin-right:10px;
 }
+.hidden{
+}
+.userNameSection,.passwordSection{
+  
+}
+#inputEmail,#inputPassword{
+  display: inline-block;
+}
+.invalidCredentials:before{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -20px;
+    top: 10px;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #d07171;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent
+
+}
+.form-control-error{
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid red;
+}
+#inputPassword{
+  margin-bottom: 5px;
+}*/
