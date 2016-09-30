@@ -42,7 +42,25 @@ module.exports = {
            var dbFile = db.getDb();
            dbFile.collection('profile').insert(req.body,function(err, result) {
              if (err) {
-               throw err;
+              console.log('error',err);
+             }else{
+               resultArr = result;
+               res.send(resultArr);
+             }
+           });
+        });
+
+       app.post('/update',function(req,res){
+          console.log('update')
+           var resultArr = [];
+           var dbFile = db.getDb();
+           dbFile.collection('profile').update({email:req.body.email},
+              req.body
+            ,{
+               upsert: true             
+             },function(err, result) {
+             if (err) {
+              console.log('error',err);
              }else{
                resultArr = result;
                res.send(resultArr);

@@ -16,7 +16,8 @@ class App extends React.Component {
        username:'',
        signUpPage:false,
        open:false,
-       openPassword:false
+       openPassword:false,
+       response:''
      }
   }
 
@@ -37,7 +38,7 @@ class App extends React.Component {
     $.post('http://localhost:3000/login',formdata,function(response){
       console.log('response',response);
       if(typeof(response) == "object"){
-        self.setState({showWelcome:true});
+        self.setState({showWelcome:true,response:response});
       }
       else if(response === "wrongusername"){
           self.setState({open:true,openPassword:false});
@@ -109,7 +110,7 @@ class App extends React.Component {
                     <FlatButton label="Sign Up" primary={true} onClick = {this.showSignUp.bind(this)}/>
                  </div>  
                 :
-                <WelcomePage/>
+                <WelcomePage response = {this.state.response}/>
               }
           </div>
         );
